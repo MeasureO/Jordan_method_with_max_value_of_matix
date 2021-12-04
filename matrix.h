@@ -6,5 +6,9 @@ public:
     Matrix() {
         _size = 0;
     }
+    Matrix(int size) {
+        _data.resize(size * size);
+    }
+    
 
 };
