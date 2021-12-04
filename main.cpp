@@ -25,6 +25,11 @@ int main(int argc, char** argv){
     }
     //freopen("CON","w",stdout);
     std::cout << matrix;
+    matrix.colSwap(1, 2);
+    std::cout << "-----------------------" << endl;
+    std::cout << matrix;
+    std::cout << "-----------------------" << endl;
+    //std::cout << matrix.maxElem(matrix.getSize());
     //std::cout << matrix.getSize();
     for(int i = 0; i < argc; i++)
     {
