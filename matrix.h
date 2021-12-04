@@ -1,3 +1,4 @@
+#pragma once
 class Matrix {
 private:
     int _size;
@@ -12,6 +13,19 @@ public:
     }
     friend std::istream& operator>>(std::istream& is, Matrix& mt);
     friend std::ostream& operator<<(std::ostream& os, const Matrix& mt);
+
+    const int getSize(){
+        return _size;
+    }
+    double& operator()(int row, int col)
+    {
+        return _data[row * _size + col];
+    }
+ 
+    double operator()(int row, int col) const
+    {
+        return _data[row * _size + col];
+    }
 };
 
 std::istream& operator>>(std::istream& is, Matrix& mt)
