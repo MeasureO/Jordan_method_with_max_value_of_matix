@@ -1,5 +1,5 @@
 class Matrix {
-friend:
+private:
     int _size;
     std::vector<double> _data;
 public:

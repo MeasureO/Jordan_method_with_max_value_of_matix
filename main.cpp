@@ -8,7 +8,7 @@ using namespace std;
 int main(int argc, char** argv){
   if (argv[2] == 0){
     freopen("input.txt", "r", stdin); // перенаправить стандартный поток вывода в файл
-    matrix = Matrix((int)argv[0])
+    Matrix matrix = Matrix(atoi(argv[0]));
     std::cin >> matrix;
     fclose (stdout);
   }
