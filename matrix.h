@@ -39,7 +39,7 @@ public:
         double current_max = 0;
         for(int i = _size - submatrix_size; i < _size; i++){
             for(int j = _size - submatrix_size; j < _size; j++){
-                if (std::fabs(_data[i * _size + j]) > std::fabs(current_max)){
+                if (std::abs(_data[i * _size + j]) > std::abs(current_max)){
                     current_max = _data[i * _size + j];
                     i_max = i;
                     j_max = j;

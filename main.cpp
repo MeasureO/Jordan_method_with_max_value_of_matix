@@ -29,7 +29,7 @@ int main(int argc, char** argv){
     std::cout << "-----------------------" << endl;
     std::cout << matrix;
     std::cout << "-----------------------" << endl;
-    //std::cout << matrix.maxElem(matrix.getSize());
+    std::cout << matrix.maxElem(matrix.getSize()).first << " " <<  matrix.maxElem(matrix.getSize()).second << endl;
     //std::cout << matrix.getSize();
     for(int i = 0; i < argc; i++)
     {
