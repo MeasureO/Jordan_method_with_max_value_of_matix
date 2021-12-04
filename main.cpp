@@ -7,12 +7,13 @@ using namespace std;
 
 int main(int argc, char** argv){
     Matrix matrix;
-    if (*argv[3] == 0){
+    if (*argv[3] == '0'){
         freopen("input.txt", "r", stdin); // перенаправить стандартный поток вывода в файл
-        matrix = Matrix(atoi(argv[0]));
+        matrix = Matrix(atoi(argv[1]));
         std::cin >> matrix;
-        fclose(stdout);
+        fclose(stdin);
     }
+    //freopen("CON","w",stdout);
     std::cout << matrix;
     for(int i = 0; i < argc; i++)
     {
