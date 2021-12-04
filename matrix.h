@@ -9,17 +9,20 @@ public:
     Matrix(int size) {
         _data.resize(size * size);
     }
-    friend istream& operator>>(istream& is, const Matrix& mt);
-    friend ostream& operator<<(ostream& os, const Matrix& mt);
+    friend std::istream& operator>>(std::istream& is, const Matrix& mt);
+    friend std::ostream& operator<<(std::ostream& os, const Matrix& mt);
 };
 
-istream& operator>>(istream& is, const Matrix& mt)
+std::istream& operator>>(std::istream& is, const Matrix& mt)
 {
-    // is >> endl;
-    return os;
+    is >> mt._size;
+    return is;
 }
-ostream& operator<<(ostream& os, const Matrix& mt)
+std::ostream& operator<<(std::ostream& os, const Matrix& mt)
 {
     // os << dt.mo << '/' << dt.da << '/' << dt.yr;
     return os;
 }
+
+
+
