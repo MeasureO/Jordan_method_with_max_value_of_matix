@@ -24,10 +24,10 @@ std::istream& operator>>(std::istream& is, Matrix& mt)
 std::ostream& operator<<(std::ostream& os, const Matrix& mt)
 {   
     for(int i = 0; i < mt._size; i++){
-        for(int j = 0; i < mt._size; i++){
-        os << mt._data[i * mt._size + j] << " ";
-        }
-        os << std::endl;
+        for(int j = 0; j < mt._size; j++){
+            os << mt._data[i * mt._size + j] << " ";
+            }
+            os << std::endl;
     }
     return os;
 }
