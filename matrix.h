@@ -33,6 +33,14 @@ public:
             std::swap(_data[i * _size + col1], _data[i * _size + col2]);
         }
     }
+    void rowSwap(int row1, int row2, int submatrix_size){
+        std::swap_ranges(_data.begin() + row1 * _size + _size - submatrix_size, 
+                         _data.begin() + row1 * _size + _size,
+                         _data.begin() + row2 * _size + _size - submatrix_size);
+        // std::memcpy(_data[row1 * _size + _size - submatrix_size, 
+        //                  _data.begin() + row1 * _size + _size,
+        //                  _data.begin() + row2 * _size + _size - submatrix_size);
+    }
     std::pair<int, int> maxElem(int submatrix_size){
         int i_max = 0;
         int j_max = 0;

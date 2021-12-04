@@ -25,11 +25,16 @@ int main(int argc, char** argv){
     }
     //freopen("CON","w",stdout);
     std::cout << matrix;
-    matrix.colSwap(1, 2);
     std::cout << "-----------------------" << endl;
+    matrix.colSwap(1, 2);
+    std::cout << "After columns 1 and 2 swap: " << endl;
     std::cout << matrix;
     std::cout << "-----------------------" << endl;
-    std::cout << matrix.maxElem(matrix.getSize()).first << " " <<  matrix.maxElem(matrix.getSize()).second << endl;
+    std::cout << "After rows 1 and 2 of right_bottom_submatrix swap: " << endl;
+    matrix.rowSwap(1, 2, 2);
+    std::cout << matrix;
+    std::cout << "-----------------------" << endl;
+    std::cout << "Submatrix max: " << matrix.maxElem(matrix.getSize()).first << " " <<  matrix.maxElem(matrix.getSize()).second << endl;
     //std::cout << matrix.getSize();
     for(int i = 0; i < argc; i++)
     {
