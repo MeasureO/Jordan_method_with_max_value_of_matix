@@ -10,7 +10,7 @@ int main(int argc, char** argv){
     freopen("input.txt", "r", stdin); // перенаправить стандартный поток вывода в файл
     Matrix matrix = Matrix(atoi(argv[0]));
     std::cin >> matrix;
-    fclose (stdout);
+    fclose(stdout);
   }
   for(int i = 0; i < argc; i++)
   {
