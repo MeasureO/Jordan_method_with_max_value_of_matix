@@ -1,6 +1,6 @@
 class Matrix {
 private:
-    int size;
+    int _size;
     std::vector<double> _data;
 public:
     Matrix() {
