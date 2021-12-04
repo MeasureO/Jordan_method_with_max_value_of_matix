@@ -1,5 +1,5 @@
 class Matrix {
-private:
+friend:
     int _size;
     std::vector<double> _data;
 public:
@@ -15,7 +15,9 @@ public:
 
 std::istream& operator>>(std::istream& is, const Matrix& mt)
 {
-    is >> mt._size;
+    for(int i = 0; i < mt._size * mt._size; i++){
+        is >> mt._data[i];
+    }
     return is;
 }
 std::ostream& operator<<(std::ostream& os, const Matrix& mt)
