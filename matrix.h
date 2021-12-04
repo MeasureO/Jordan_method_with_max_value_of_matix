@@ -21,8 +21,10 @@ std::istream& operator>>(std::istream& is, const Matrix& mt)
     return is;
 }
 std::ostream& operator<<(std::ostream& os, const Matrix& mt)
-{
-    // os << dt.mo << '/' << dt.da << '/' << dt.yr;
+{   
+    for(int i = 0; i < mt._size * mt._size; i++){
+        os << mt._data[i];
+    }
     return os;
 }
 
