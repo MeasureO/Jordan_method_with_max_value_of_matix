@@ -3,6 +3,7 @@ class Matrix {
 private:
     int _size;
     std::vector<double> _data;
+    // std::vector<double> _b;
 public:
     Matrix() {
         _size = 0;
@@ -11,6 +12,7 @@ public:
     Matrix(int size) {
         _size = size;
         _data.resize(size * size);
+        //_b.resize(size);
     }
 
     friend std::istream& operator>>(std::istream& is, Matrix& mt);
@@ -28,6 +30,23 @@ public:
     {
         return _data[row * _size + col];
     }
+    // double& operator()(int row)
+    // {
+    //     double s = 0;
+    //     for(int j = 0; j < _size; j += 2){
+    //         s += _data[row * _size + j];
+    //     }
+    //     return s;
+    // }
+ 
+    // double operator()(int row) const
+    // {
+    //     double s = 0;
+    //     for(int j = 0; j < _size; j += 2){
+    //         s += _data[row * _size + j];
+    //     }
+    //     return s;
+    // }
     void colSwap(int col1, int col2){
         for(int i = 0; i < _size; i++){
             std::swap(_data[i * _size + col1], _data[i * _size + col2]);
@@ -37,9 +56,6 @@ public:
         std::swap_ranges(_data.begin() + row1 * _size + _size - submatrix_size, 
                          _data.begin() + row1 * _size + _size,
                          _data.begin() + row2 * _size + _size - submatrix_size);
-        // std::memcpy(_data[row1 * _size + _size - submatrix_size, 
-        //                  _data.begin() + row1 * _size + _size,
-        //                  _data.begin() + row2 * _size + _size - submatrix_size);
     }
     std::pair<int, int> maxElem(int submatrix_size){
         int i_max = 0;
@@ -56,7 +72,13 @@ public:
         }
         return std::make_pair(i_max, j_max);
     }
-    // return std::make_pair(im, jm);
+    // int get_b(int i){
+    //     int s = 0;
+    //     for(int j = 0; j <= _size; j += 2){
+    //         s += _data[i * _size + j];
+    //     }
+    //     return s;
+    // }
 };
 
 std::istream& operator>>(std::istream& is, Matrix& mt)
@@ -64,6 +86,11 @@ std::istream& operator>>(std::istream& is, Matrix& mt)
     for(int i = 0; i < mt._size * mt._size; i++){
         is >> mt._data[i];
     }
+    // for(int i = 0; i < mt._size; i++){
+    //     for(int j = 0; j < mt._size; j += 2){
+    //         mt._b[i] += mt._data[i * mt._size + j];
+    //     }
+    // }
     return is;
 }
 std::ostream& operator<<(std::ostream& os, const Matrix& mt)
@@ -71,11 +98,14 @@ std::ostream& operator<<(std::ostream& os, const Matrix& mt)
     for(int i = 0; i < mt._size; i++){
         for(int j = 0; j < mt._size; j++){
             os << mt._data[i * mt._size + j] << " ";
-            }
-            os << std::endl;
+        }
+        // os << mt._b[i];
+        //os << mt(i);
+        os << std::endl;
     }
     return os;
 }
+
 
 
 

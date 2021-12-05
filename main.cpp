@@ -22,6 +22,11 @@ int main(int argc, char** argv){
                 matrix(i, j) = func(atoi(argv[3]), n, i, j);
             }
         }  
+        // for(int i = 0; i < matrix._size; i++){
+        //     for(int j = 0; j < matrix._size; j += 2){
+        //         matrix._b[i] += matrix._data[i * matrix._size + j];
+        // }
+        //}
     }
     //freopen("CON","w",stdout);
     std::cout << matrix;
