@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <iomanip>
+#include <string>
 class Matrix
 {
 private:
@@ -9,6 +10,7 @@ private:
 
 public:
     std::vector<double> _b;
+    // std::vector<std::string> variables;
     Matrix()
     {
         _size = 0;
@@ -19,6 +21,12 @@ public:
         _size = size;
         _data.resize(size * size);
         _b.resize(size);
+        // variables.resize(size);
+        // for (int i = 0; i < size; i++)
+        // {
+        //     //variables[i] = std::to_string(i + 1);
+        //     variables[i] = std::to_string(i + 1);
+        // }
     }
 
     friend std::istream &operator>>(std::istream &is, Matrix &mt);
@@ -122,6 +130,11 @@ std::istream &operator>>(std::istream &is, Matrix &mt)
 }
 std::ostream &operator<<(std::ostream &os, const Matrix &mt)
 {
+    // for (int i = 0; i < mt._size; i++)
+    // {
+    //     os << std::setw(10) << 'x' << mt.variables[i] << " ";
+    // }
+    // os << std::setw(10) << 'b' << std::endl;
     for (int i = 0; i < mt._size; i++)
     {
         for (int j = 0; j < mt._size; j++)

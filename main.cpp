@@ -4,7 +4,22 @@
 #include "matrix.h"
 #include "function.h"
 #include "jordan.h"
+#include <cmath>
+#include <chrono>
 using namespace std;
+
+void print_matrix(Matrix matrix, int n, int l)
+{
+    for (int i = 0; i < l; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            cout << printf("%10.3e", matrix(i, j));
+        }
+        //printf("%10.3e", matrix._b[i]);
+        printf("\n");
+    }
+}
 
 int main(int argc, char **argv)
 {
@@ -35,11 +50,12 @@ int main(int argc, char **argv)
             }
         }
     }
+    print_matrix(matrix, atoi(argv[1]), atoi(argv[2]));
     std::vector<double> x;
     x.resize(atoi(argv[1]));
     //freopen("CON","w",stdout);
-    std::cout << matrix;
-    std::cout << "----------------------------------------------------------------" << std::endl;
+    // std::cout << matrix;
+    // std::cout << "----------------------------------------------------------------" << std::endl;
     // std::cout << "-----------------------" << endl;
     // matrix.colSwap(1, 2);
     // std::cout << "After columns 1 and 2 swap: " << endl;
@@ -55,10 +71,60 @@ int main(int argc, char **argv)
     // }
     //std::cout << "Submatrix max: " << matrix.maxElem(matrix.getSize()).first << " " << matrix.maxElem(matrix.getSize()).second << endl;
     //std::cout << matrix.getSize();
-    jordan_solver(atoi(argv[1]), matrix, matrix._b, x);
     for (int i = 0; i < argc; i++)
     {
         cout << "Command line parameter:" << argv[i] << endl;
     }
+    std::chrono::time_point<std::chrono::system_clock> start, end;
+    start = std::chrono::system_clock::now();
+    std::vector<double> solution = jordan_solver(atoi(argv[1]), matrix, matrix._b, x);
+    end = std::chrono::system_clock::now();
+    std::chrono::duration<double> elapsed_seconds = end - start;
+    std::vector<double> exact_solution;
+    exact_solution.resize(atoi(argv[1]));
+    for (int i = 0; i < atoi(argv[1]); i += 2)
+    {
+        exact_solution[i] = 1;
+    }
+    std::vector<double> residual(atoi(argv[1]));
+    for (int i = 0; i < atoi(argv[1]); i++)
+    {
+        residual[i] = matrix._b[i];
+    }
+    for (int i = 0; i < atoi(argv[1]); i++)
+    {
+        for (int j = 0; j < atoi(argv[1]); j++)
+        {
+            residual[i] -= matrix(i, j) * solution[j];
+        }
+    }
+    double b_norm = 0;
+    double residual_norm = 0;
+    for (double x : matrix._b)
+    {
+        b_norm += x * x;
+    }
+    b_norm = sqrt(b_norm);
+    for (double y : residual)
+    {
+        residual_norm += y * y;
+    }
+    residual_norm = sqrt(residual_norm);
+
+    std::cout << "Норма невязки = " << scientific << residual_norm / b_norm << std::endl;
+    std::vector<double> error(atoi(argv[1]));
+    for (int i = 0; i < atoi(argv[1]); i++)
+    {
+        error[i] = solution[i] - exact_solution[i];
+    }
+    double error_norm = 0;
+    for (double z : error)
+    {
+        error_norm += z * z;
+    }
+    error_norm = sqrt(error_norm);
+    std::cout << "Норма погрешности = " << scientific << error_norm << std::endl;
+    std::cout << "Время решения системы = " << elapsed_seconds.count() << std::endl;
+    //cout << matrix;
     return 0;
 }
