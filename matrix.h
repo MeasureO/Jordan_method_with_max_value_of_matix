@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <iomanip>
 class Matrix
 {
 private:
@@ -70,6 +71,12 @@ public:
     {
         std::swap(_b[row1], _b[row2]);
     }
+    // void row_minus_row(int row1, int row2, int submatrix_size)
+    // {
+    //     std::swap_ranges(_data.begin() + row1 * _size + _size - submatrix_size,
+    //                      _data.begin() + row1 * _size + _size,
+    //                      _data.begin() + row2 * _size + _size - submatrix_size);
+    // }
     std::pair<int, int> maxElem(int submatrix_size)
     {
         int i_max = 0;
@@ -119,11 +126,10 @@ std::ostream &operator<<(std::ostream &os, const Matrix &mt)
     {
         for (int j = 0; j < mt._size; j++)
         {
-            os << mt._data[i * mt._size + j] << " ";
+            os << std::setw(10) << mt._data[i * mt._size + j] << " ";
         }
-        os << mt._b[i];
+        os << std::setw(10) << mt._b[i] << std::endl;
         //os << mt(i);
-        os << std::endl;
     }
     return os;
 }

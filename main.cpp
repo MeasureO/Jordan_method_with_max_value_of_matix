@@ -39,7 +39,7 @@ int main(int argc, char **argv)
     x.resize(atoi(argv[1]));
     //freopen("CON","w",stdout);
     std::cout << matrix;
-    std::cout << "----------------------" << std::endl;
+    std::cout << "----------------------------------------------------------------" << std::endl;
     // std::cout << "-----------------------" << endl;
     // matrix.colSwap(1, 2);
     // std::cout << "After columns 1 and 2 swap: " << endl;
